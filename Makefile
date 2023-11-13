@@ -6,14 +6,14 @@
 #    By: k <k@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 16:05:53 by k                 #+#    #+#              #
-#    Updated: 2023/10/30 16:43:48 by k                ###   ########.fr        #
+#    Updated: 2023/11/13 15:15:44 by k                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minitalk
 
-SRCS	= 	client.c /
-			server.c
+SRCS	= client.c \
+		  server.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -28,15 +28,15 @@ all:	$(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):	$(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:
 	$(RM) $(OBJS)
 
-fclean:		clean
+fclean: clean
 	$(RM) $(NAME)
 
-re:			fclean all
+re: fclean all
 
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean re
