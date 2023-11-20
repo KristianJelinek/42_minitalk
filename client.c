@@ -6,11 +6,11 @@
 /*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Updated: 2023/11/20 16:23:21 by k                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "include/minitalk.h"
 
 void	char_to_binary(char c)
 {
@@ -19,7 +19,7 @@ void	char_to_binary(char c)
 
 	while (i >= 0)
 	{
-		ft_printf(("%d", c >> i) & 1);
+		ft_printf("%d", (c >> i) & 1);
 		i--;
 	}
 }
