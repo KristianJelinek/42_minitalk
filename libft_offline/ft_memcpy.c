@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/18 12:09:16 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/09/16 17:07:08 by k                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	i;
-	i = 7;
+	size_t	i;
+	char	*d;
+	char	*s;
 
-	while (i >= 0)
+	i = 0;
+	d = (char *)dest;
+	s = (char *)src;
+
+	if (d == NULL && s == NULL)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		return (NULL);
 	}
+	
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
 }

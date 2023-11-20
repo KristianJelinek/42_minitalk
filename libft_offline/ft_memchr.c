@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kjelinek < kjelinek@student.42prague.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/17 11:16:05 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/08/23 11:53:26 by kjelinek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
-	i = 7;
+	size_t	i;
 
-	while (i >= 0)
+	i = 0;
+	while (i < n)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		if (((unsigned char *)s)[i] == (unsigned char)c)
+			return ((void *)(s + i));
+		i++;
 	}
+	return (0);
 }

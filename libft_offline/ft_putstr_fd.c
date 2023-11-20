@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kjelinek < kjelinek@student.42prague.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/16 09:20:10 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/08/23 12:02:37 by kjelinek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
-	i = 7;
 
-	while (i >= 0)
+	if (s != NULL)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		i = 0;
+		while (s[i])
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
 	}
 }

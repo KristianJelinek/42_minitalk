@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/15 13:17:04 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/09/16 17:22:36 by k                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-	i = 7;
+	size_t	i;
 
-	while (i >= 0)
+	i = 0;
+	if (!s1 || !s2)
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	while (i < n)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		if (s1[i] == '\0' || s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
+		return (0);
 }

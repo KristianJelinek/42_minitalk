@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/24 13:53:24 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/09/16 17:28:43 by k                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
-	i = 7;
-
-	while (i >= 0)
+	void	*rtn;
+	
+	if (size == 0 || count == 0)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		size = 1;
+		count = 1;
 	}
+	if (SIZE_MAX / size < count)
+	{
+		return (NULL);
+	}
+	rtn = malloc(size * count);
+	if (!rtn)
+		return (NULL);
+	ft_bzero(rtn, size * count);
+	return (rtn);
 }

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kjelinek < kjelinek@student.42prague.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/31 09:35:06 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/09/05 15:00:12 by kjelinek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
-	i = 7;
+	t_list	*current;
 
-	while (i >= 0)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
+		*lst = new;
+		return ;
 	}
+	current = *lst;
+	while (current->next)
+		current = current->next;
+	current->next = new;
 }

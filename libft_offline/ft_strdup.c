@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: k <k@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:05:13 by k                 #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:46 by k                ###   ########.fr       */
+/*   Created: 2023/08/24 12:42:09 by kjelinek          #+#    #+#             */
+/*   Updated: 2023/09/14 18:36:41 by k                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minitalk.h"
+#include "libft.h"
 
-void	char_to_binary(char c)
+char	*ft_strdup(const char *s)
 {
-	int	i;
-	i = 7;
+	char	*rtn;
+	size_t	len;
 
-	while (i >= 0)
-	{
-		ft_printf(("%d", c >> i) & 1);
-		i--;
-	}
+	len = ft_strlen(s) + 1;
+	rtn = malloc(sizeof(char) * len);
+	if (!rtn)
+		return (0);
+	rtn = ft_memcpy(rtn, s, len);
+	return (rtn);
 }
