@@ -11,10 +11,10 @@
 /* ************************************************************************ */
 
 #include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <sys/wait.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <stdio.h>
 /*
 int main(void)
 {
@@ -112,6 +112,7 @@ int	main(void)
 	}
 	
 }
+
 #ifndef CHILD_EXIT_CODE
 # define CHILD_EXIT_CODE 42
 #endif
@@ -155,8 +156,70 @@ int	main(void)
 		return(EXIT_FAILURE);
 	else if (pid == 0)
 		child_routine(pid);
-	else if (pid > 0);
+	else if (pid > 0)
 		parent_routine(pid);
 	return(EXIT_SUCCESS);
+}
+
+void	child_routine(void)
+{
+	printf("\e[36mChild: Hi! I am child. I am in an infinite loop. \e[0m\n");
+	while (1)
+		continue;
+}
+
+void	kill_and_get_children(pid_t *pid)
+{
+	int	status;
+	int	i;
+
+	printf("Parent: I am the murderous parent! \n");
+	i = 0;
+	while (i < 3)
+	{
+		kill(pid[i], SIGKILL);
+		i++;
+	}
+	printf("Parent: I killed all my children! D:\n");
+	i = 0;
+	while (i < 3)
+	{
+		waitpid(pid[i], &status, 0);
+		if (WIFEXITED(status))
+			printf("Parent: Child [%d] terminated normally.\n");
+		else if (WIFSIGNALED(status))
+		{
+			printf("Parent: Child [%d] was interrupted.\n");
+			if (WTERMSIG(status) == SIGTERM)
+				printf("\e[31mParent: Child [%d] got the %d signal, SIGTERM\e[0m\n",
+							pid[i], WTERMSIG(status));
+			if (WTERMSIG(status) == SIGKILL)
+				printf("\e[31mParent: Child [%d] got the %d signal, SIGKILL\e[0m\n",
+							pid[i], WTERMSIG(status));
+		}
+		i++;
+	}
+}
+
+int	main(void)
+{
+	pid_t	pid[3];
+	int		i;
+
+	i = 0;
+	while (i < 3)
+	{
+		pid[i] = fork();
+		if (pid[i] == -1)
+			return (EXIT_FAILURE);
+		else if (pid[i] == 0)
+			child_routine();
+		else if (pid[i] > 0)
+			printf("Parent: Child #%d created with pid = %d\n", i, pid[i]);
+		usleep(1000);
+		i++;
+	}
+	kill_and_get_children(pid);
+	return (EXIT_SUCCESS);
 }
 */
